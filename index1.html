@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ivjiro's Portfolio</title>
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #f7f4ed;
+            overflow-x: hidden;
+        }
+
+        /* Header Styles */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            background-color: #0b1957;
+            width: 100%;
+            height: 70px;
+            padding: 0 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            animation: slideDown 0.8s ease forwards;
+        }
+
+        @keyframes slideDown {
+            from {
+                transform: translateY(-100px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        .logo img {
+            height: 60px;
+            width: auto;
+            border-radius: 10px;
+        }
+
+        nav ul {
+            list-style-type: none;
+            display: flex;
+            gap: 30px;
+            margin: 0;
+            padding: 0;
+        }
+
+        nav li a {
+            color: #E6E6FA;
+            text-decoration: none;
+            font-size: 16px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            padding-bottom: 5px;
+            border-bottom: 2px solid transparent;
+        }
+
+        nav li a:hover,
+        nav li.active a {
+            border-bottom: 2px solid #E6E6FA;
+        }
+
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            gap: 5px;
+        }
+
+        .hamburger span {
+            width: 25px;
+            height: 3px;
+            background-color: #E6E6FA;
+            transition: 0.3s;
+        }
+
+
+        #about {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            min-height: 100vh;
+            padding: 100px 50px 50px;
+            gap: 40px;
+        }
+
+        .text-content {
+            flex: 1;
+            max-width: 600px;
+            opacity: 0;
+            transform: translateX(-80px);
+            animation: slideInLeft 1s ease 0.5s forwards;
+        }
+
+        @keyframes slideInLeft {
+            from {
+                transform: translateX(-80px);
+                opacity: 0;
+            }
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+
+        .text-content h1 {
+            color: #46286d;
+            font-size: clamp(28px, 5vw, 48px);
+            font-weight: 700;
+            margin-bottom: 20px;
+            line-height: 1.2;
+        }
+
+        .text-content p {
+            color: #0b1957;
+            font-size: clamp(16px, 2vw, 20px);
+            line-height: 1.6;
+        }
+
+        .img-content {
+            flex: 0 0 auto;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .img-content img {
+            width: 350px;
+            height: 350px;
+            margin-right: 20px;
+            object-fit: cover;
+            border-radius: 20px;
+            border: 5px solid #46286d;
+            box-shadow: 0 10px 30px rgba(70, 40, 109, 0.3);
+            opacity: 0;
+            animation: fadeInImage 1s ease 0.8s forwards;
+            transition: transform 0.3s ease;
+        }
+
+        .img-content img:hover {
+            transform: scale(1.05);
+        }
+
+        @keyframes fadeInImage {
+            from {
+                opacity: 0;
+                transform: scale(0.95);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        /* About Me Section */
+        #about-me {
+            display: flex;
+            justify-content: center;
+            flex-direction: column;
+            align-items: center;
+            padding: 80px 40px;
+            background: linear-gradient(135deg, #E6E6FA 0%, #d4d4f7 100%);
+            animation: fadeIn 1s ease 1.2s both;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        #about-me h2 {
+            font-size: clamp(28px, 4vw, 36px);
+            color: #0b1957;
+            margin-bottom: 30px;
+            font-weight: 600;
+        }
+
+        #about-me p {
+            max-width: 900px;
+            text-align: center;
+            font-size: clamp(16px, 2vw, 18px);
+            color: #0b1957;
+            line-height: 1.8;
+        }
+
+        /* Skills Preview Cards */
+        .skills-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            padding: 60px 40px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .preview {
+            background-color: #E6E6FA;
+            padding: 40px 30px;
+            border: 3px solid #0b1957;
+            border-radius: 20px;
+            text-align: center;
+            transition: all 0.4s ease;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            opacity: 0;
+            animation: fadeInUp 0.6s ease forwards;
+        }
+
+        .preview:nth-child(1) { animation-delay: 1.4s; }
+        .preview:nth-child(2) { animation-delay: 1.5s; }
+        .preview:nth-child(3) { animation-delay: 1.6s; }
+        .preview:nth-child(4) { animation-delay: 1.7s; }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .preview:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 30px rgba(11, 25, 87, 0.2);
+            border-color: #46286d;
+        }
+
+        .preview i {
+            font-size: 60px;
+            color: #0b1957;
+            margin-bottom: 20px;
+            transition: all 0.3s ease;
+        }
+
+        .preview:hover i {
+            color: #46286d;
+            transform: scale(1.1);
+        }
+
+        .preview h2 {
+            font-size: 22px;
+            color: #0b1957;
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+
+        .preview p {
+            font-size: 15px;
+            color: #1a2a6e;
+            line-height: 1.6;
+        }
+
+
+        .details {
+            background: linear-gradient(135deg, #0b1957 0%, #1a2a6e 100%);
+            padding: 60px 40px 20px;
+        }
+
+        .contacts {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .me h2 {
+            color: #E6E6FA;
+            font-size: clamp(20px, 3vw, 28px);
+            font-weight: 600;
+        }
+
+        .contact {
+            text-align: center;
+        }
+
+        .contact h2 {
+            color: #E6E6FA;
+            font-size: clamp(22px, 3vw, 28px);
+            margin-bottom: 20px;
+            font-weight: 600;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+        }
+
+        .social-links a {
+            color: #E6E6FA;
+            font-size: 32px;
+            transition: all 0.3s ease;
+        }
+
+        .social-links a:hover {
+            color: #fff;
+            transform: translateY(-5px) scale(1.15);
+        }
+
+        footer {
+            color: #E6E6FA;
+            text-align: center;
+            padding: 20px;
+            font-size: 14px;
+            opacity: 0.8;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 968px) {
+            #about {
+                flex-direction: column;
+                text-align: center;
+                padding: 100px 30px 50px;
+            }
+
+            .text-content {
+                max-width: 100%;
+            }
+
+            .img-content img {
+                width: 280px;
+                height: 280px;
+            }
+
+            .skills-container {
+                grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+                gap: 25px;
+                padding: 40px 30px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hamburger {
+                display: flex;
+            }
+
+            nav {
+                position: absolute;
+                top: 70px;
+                left: 0;
+                width: 100%;
+                background-color: #0b1957;
+                max-height: 0;
+                overflow: hidden;
+                transition: max-height 0.3s ease;
+            }
+
+            nav.active {
+                max-height: 300px;
+            }
+
+            nav ul {
+                flex-direction: column;
+                padding: 20px;
+                gap: 20px;
+            }
+
+            #about {
+                padding: 100px 20px 40px;
+            }
+
+            .contacts {
+                flex-direction: column;
+                text-align: center;
+                gap: 30px;
+            }
+
+            .me {
+                order: 2;
+            }
+
+            .contact {
+                order: 1;
+            }
+
+            .skills-container {
+                grid-template-columns: 1fr;
+                padding: 30px 20px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .img-content img {
+                width: 220px;
+                height: 220px;
+            }
+
+            .preview {
+                padding: 30px 20px;
+            }
+
+            .preview i {
+                font-size: 50px;
+            }
+
+            .social-links a {
+                font-size: 28px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <img src="logo.png" alt="Logo">
+        </div>
+        <div class="hamburger" onclick="toggleMenu()">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+        <nav id="nav">
+            <ul>
+                <li class="active"><a href="index1.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="skill.html">Skills</a></li>
+                <li><a href="project.html">Projects</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section id="about">
+        <div class="text-content">
+            <h1>Hello! I'm Sofhia Nicole Ardiente</h1>
+            <p>Aspiring Full-Stack Developer with Cybersecurity and Data Science Focus</p>
+        </div>
+        <div class="img-content">
+            <img src="me.jpg" alt="Sofhia Nicole Ardiente">
+        </div>
+    </section>
+
+    <section id="about-me">
+        <h2>About Me</h2>
+        <p>I am a dedicated and passionate individual with a strong interest in technology and programming. I am currently pursuing a degree in Computer Science, where I have developed a solid foundation in various programming languages and frameworks. My goal is to become a proficient full-stack developer with a focus on cybersecurity and data science.</p>
+    </section>
+
+    <div class="skills-container">
+        <div class="preview">
+            <i class="ph ph-laptop"></i>
+            <h2>Clean Coding</h2>
+            <p>I write clear, maintainable, and efficient code that follows best practices to ensure quality and readability.</p>
+        </div>
+        <div class="preview">
+            <i class="ph ph-head-circuit"></i>
+            <h2>Problem Solving</h2>
+            <p>I excel at analyzing complex problems and developing effective solutions using logical thinking and creativity.</p>
+        </div>
+        <div class="preview">
+            <i class="ph ph-rocket"></i>
+            <h2>Fast Learning</h2>
+            <p>I quickly grasp new concepts and technologies, allowing me to adapt and grow continuously in dynamic environments.</p>
+        </div>
+        <div class="preview">
+            <i class="ph ph-chat-circle-dots"></i>
+            <h2>Good Communication</h2>
+            <p>I communicate effectively, ensuring clear understanding and smooth collaboration within teams and projects.</p>
+        </div>
+    </div>
+
+    <div class="details">
+        <div class="contacts">
+            <div class="me">
+                <h2>Sofhia Nicole Ardiente</h2>
+            </div>
+            <div class="contact">
+                <h2>Contact Me</h2>
+                <div class="social-links">
+                    <a href="#" aria-label="Email"><i class="ph ph-envelope"></i></a>
+                    <a href="#" aria-label="LinkedIn"><i class="ph ph-linkedin-logo"></i></a>
+                    <a href="#" aria-label="Instagram"><i class="ph ph-instagram-logo"></i></a>
+                    <a href="#" aria-label="GitHub"><i class="ph ph-github-logo"></i></a>
+                </div>
+            </div>
+        </div>
+        <footer>
+            <p>&copy; 2025 Sofhia Nicole Ardiente. All rights reserved.</p>
+        </footer>
+    </div>
+
+    <script>
+        function toggleMenu() {
+            const nav = document.getElementById('nav');
+            nav.classList.toggle('active');
+        }
+
+        // Close menu when clicking outside
+        document.addEventListener('click', function(event) {
+            const nav = document.getElementById('nav');
+            const hamburger = document.querySelector('.hamburger');
+            
+            if (!nav.contains(event.target) && !hamburger.contains(event.target)) {
+                nav.classList.remove('active');
+            }
+        });
+
+        // Close menu when clicking a nav link
+        document.querySelectorAll('nav a').forEach(link => {
+            link.addEventListener('click', () => {
+                document.getElementById('nav').classList.remove('active');
+            });
+        });
+    </script>
+</body>
+</html>
