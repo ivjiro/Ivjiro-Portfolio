@@ -1,0 +1,585 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ivjiro's Portfolio - Projects</title>
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #f7f4ed;
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+        }
+
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            background-color: #0b1957;
+            width: 100%;
+            height: 70px;
+            padding: 0 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            animation: slideDown 0.8s ease forwards;
+        }
+
+        @keyframes slideDown {
+            from {
+                transform: translateY(-100px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        .logo img {
+            height: 60px;
+            width: auto;
+            border-radius: 10px;
+        }
+
+        nav ul {
+            list-style-type: none;
+            display: flex;
+            gap: 30px;
+            margin: 0;
+            padding: 0;
+        }
+
+        nav li a {
+            color: #E6E6FA;
+            text-decoration: none;
+            font-size: 16px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            padding-bottom: 5px;
+            border-bottom: 2px solid transparent;
+        }
+
+        nav li a:hover,
+        nav li.active a {
+            border-bottom: 2px solid #E6E6FA;
+        }
+
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            gap: 5px;
+        }
+
+        .hamburger span {
+            width: 25px;
+            height: 3px;
+            background-color: #E6E6FA;
+            transition: 0.3s;
+        }
+
+        main {
+            padding-top: 100px;
+            min-height: calc(100vh - 70px);
+        }
+
+        .intro {
+            text-align: center;
+            padding: 40px 20px;
+            animation: fadeIn 1s ease 0.3s both;
+        }
+
+        .intro h1 {
+            color: #46286d;
+            font-size: clamp(28px, 5vw, 45px);
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+        .intro p {
+            color: #46286d;
+            font-size: clamp(16px, 2vw, 18px);
+            margin-top: 15px;
+            opacity: 0.8;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .projects-section {
+            max-width: 1200px;
+            margin: 60px auto;
+            padding: 0 20px;
+            animation: fadeIn 1s ease 0.5s both;
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 40px;
+            padding: 20px;
+        }
+
+        .project-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            transition: all 0.4s ease;
+            animation: popIn 0.6s ease backwards;
+        }
+
+        .project-card:nth-child(1) { animation-delay: 0.6s; }
+        .project-card:nth-child(2) { animation-delay: 0.7s; }
+        .project-card:nth-child(3) { animation-delay: 0.8s; }
+        .project-card:nth-child(4) { animation-delay: 0.9s; }
+        .project-card:nth-child(5) { animation-delay: 1s; }
+        .project-card:nth-child(6) { animation-delay: 1.1s; }
+
+        @keyframes popIn {
+            from {
+                transform: scale(0.8);
+                opacity: 0;
+            }
+            to {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+
+        .project-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 12px 30px rgba(70, 40, 109, 0.2);
+        }
+
+        .project-image {
+            width: 100%;
+            height: 200px;
+            background: linear-gradient(135deg, #0b1957 0%, #46286d 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .project-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.4s ease;
+        }
+
+        .project-card:hover .project-image img {
+            transform: scale(1.1);
+        }
+
+
+        .project-content {
+            padding: 25px;
+        }
+
+        .project-title {
+            color: #46286d;
+            font-size: 22px;
+            font-weight: 600;
+            margin-bottom: 12px;
+        }
+
+        .project-description {
+            color: #666;
+            font-size: 15px;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        .project-tech {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 20px;
+        }
+
+        .tech-tag {
+            background-color: #f0ebf8;
+            color: #46286d;
+            padding: 5px 12px;
+            border-radius: 15px;
+            font-size: 13px;
+            font-weight: 500;
+        }
+
+        .project-links {
+            display: flex;
+            gap: 15px;
+        }
+
+        .project-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 10px 20px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .link-primary {
+            background-color: #0b1957;
+            color: #E6E6FA;
+        }
+
+        .link-primary:hover {
+            background-color: #46286d;
+            transform: translateX(3px);
+        }
+
+        .link-secondary {
+            background-color: transparent;
+            color: #46286d;
+            border: 2px solid #46286d;
+        }
+
+        .link-secondary:hover {
+            background-color: #46286d;
+            color: white;
+            transform: translateX(3px);
+        }
+
+        .details {
+            background: linear-gradient(135deg, #0b1957 0%, #1a2a6e 100%);
+            margin-top: 80px;
+            padding: 60px 20px 20px;
+        }
+
+        .contacts {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .me h2 {
+            color: #E6E6FA;
+            font-size: clamp(20px, 3vw, 28px);
+            font-weight: 600;
+        }
+
+        .contact {
+            text-align: center;
+        }
+
+        .contact h2 {
+            color: #E6E6FA;
+            font-size: clamp(22px, 3vw, 28px);
+            margin-bottom: 20px;
+            font-weight: 600;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+        }
+
+        .social-links a {
+            color: #E6E6FA;
+            font-size: 32px;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .social-links a:hover {
+            color: #fff;
+            transform: translateY(-5px) scale(1.15);
+        }
+
+        footer {
+            color: #E6E6FA;
+            text-align: center;
+            padding: 20px;
+            font-size: 14px;
+            opacity: 0.8;
+        }
+
+        @media (max-width: 768px) {
+            .hamburger {
+                display: flex;
+            }
+
+            nav {
+                position: absolute;
+                top: 70px;
+                left: 0;
+                width: 100%;
+                background-color: #0b1957;
+                max-height: 0;
+                overflow: hidden;
+                transition: max-height 0.3s ease;
+            }
+
+            nav.active {
+                max-height: 300px;
+            }
+
+            nav ul {
+                flex-direction: column;
+                padding: 20px;
+                gap: 20px;
+            }
+
+            .projects-grid {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+
+            .contacts {
+                flex-direction: column;
+                text-align: center;
+                gap: 30px;
+            }
+
+            .me {
+                order: 2;
+            }
+
+            .contact {
+                order: 1;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .project-links {
+                flex-direction: column;
+            }
+
+            .project-link {
+                width: 100%;
+                justify-content: center;
+            }
+
+            .social-links a {
+                font-size: 28px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <img src="logo.png" alt="Logo">
+        </div>
+        <div class="hamburger" onclick="toggleMenu()">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+        <nav id="nav">
+            <ul>
+                <li><a href="index1.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="skill.html">Skills</a></li>
+                <li class="active"><a href="projects.html">Projects</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <div class="intro">
+            <h1>My Projects</h1>
+            <p>Here are some of the projects I've worked on</p>
+        </div>
+
+        <div class="projects-section">
+            <div class="projects-grid">
+                <div class="project-card">
+                    <div class="project-image">
+                         <img src="project1.png" alt="Portfolio Website">
+                    </div>
+                    <div class="project-content">
+                        <h3 class="project-title">Portfolio Website</h3>
+                        <p class="project-description">A responsive personal portfolio showcasing my skills, projects, and achievements with modern design and smooth animations.</p>
+                        <div class="project-tech">
+                            <span class="tech-tag">HTML</span>
+                            <span class="tech-tag">CSS</span>
+                            <span class="tech-tag">JavaScript</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="#" class="project-link link-primary">
+                                <i class="ph ph-arrow-square-out"></i>
+                                Live Demo
+                            </a>
+                            <a href="#" class="project-link link-secondary">
+                                <i class="ph ph-github-logo"></i>
+                                Code
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-image">
+                         <img src="project2.png" alt="Serie Reviewer Website">
+                    </div>
+                    <div class="project-content">
+                        <h3 class="project-title">Serie Reviewer Website</h3>
+                        <p class="project-description">Allows users to browse and submit reviews of TV series, demonstrating front-end development skills and content review capabilities.</p>
+                        <div class="project-tech">
+                            <span class="tech-tag">HTML</span>
+                            <span class="tech-tag">CSS</span>
+                            <span class="tech-tag">JavaScript</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="#" class="project-link link-primary">
+                                <i class="ph ph-arrow-square-out"></i>
+                                Live Demo
+                            </a>
+                            <a href="#" class="project-link link-secondary">
+                                <i class="ph ph-github-logo"></i>
+                                Code
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-image">
+                        <img src="project3.png" alt="Smart Inventory Tracker">
+                    </div>
+                    <div class="project-content">
+                        <h3 class="project-title">Smart Inventory Tracker</h3>
+                        <p class="project-description">Tracks product values and identifies top best-selling items, helping businesses manage stock efficiently with real-time data insights.</p>
+                        <div class="project-tech">
+                            <span class="tech-tag">Python</span>
+                            <span class="tech-tag">Flask</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="#" class="project-link link-primary">
+                                <i class="ph ph-arrow-square-out"></i>
+                                Live Demo
+                            </a>
+                            <a href="#" class="project-link link-secondary">
+                                <i class="ph ph-github-logo"></i>
+                                Code
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-image">
+                        <img src="project1.jpg" alt="AI ChatBot Specific for Linear Algebra">
+                    </div>
+                    <div class="project-content">
+                        <h3 class="project-title">AI ChatBot Specific for Linear Algebra</h3>
+                        <p class="project-description"></p>
+                        <div class="project-tech">
+                            <span class="tech-tag">Python</span>
+                            <span class="tech-tag">Flask</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="#" class="project-link link-primary">
+                                <i class="ph ph-arrow-square-out"></i>
+                                Live Demo
+                            </a>
+                            <a href="#" class="project-link link-secondary">
+                                <i class="ph ph-github-logo"></i>
+                                Code
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-image">
+                        <img src="project5.png" alt="Website Clone">
+                    </div>
+                    <div class="project-content">
+                        <h3 class="project-title">Website Clone</h3>
+                        <p class="project-description">Redesigned version of an existing website built using HTML and CSS, showcasing skills in responsive layout, visual design, and front-end development best practices.</p>
+                        <div class="project-tech">
+                            <span class="tech-tag">HTML</span>
+                            <span class="tech-tag">CSS</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="#" class="project-link link-primary">
+                                <i class="ph ph-arrow-square-out"></i>
+                                Live Demo
+                            </a>
+                            <a href="#" class="project-link link-secondary">
+                                <i class="ph ph-github-logo"></i>
+                                Code
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </main>
+
+    <div class="details">
+        <div class="contacts">
+            <div class="me">
+                <h2>Sofhia Nicole Ardiente</h2>
+            </div>
+            <div class="contact">
+                <h2>Contact Me</h2>
+                <div class="social-links">
+                    <a href="#" aria-label="Email"><i class="ph ph-envelope"></i></a>
+                    <a href="#" aria-label="LinkedIn"><i class="ph ph-linkedin-logo"></i></a>
+                    <a href="#" aria-label="Instagram"><i class="ph ph-instagram-logo"></i></a>
+                    <a href="#" aria-label="GitHub"><i class="ph ph-github-logo"></i></a>
+                </div>
+            </div>
+        </div>
+        <footer>
+            <p>&copy; 2025 Sofhia Nicole Ardiente. All rights reserved.</p>
+        </footer>
+    </div>
+
+    <script>
+        function toggleMenu() {
+            const nav = document.getElementById('nav');
+            nav.classList.toggle('active');
+        }
+
+        document.addEventListener('click', function(event) {
+            const nav = document.getElementById('nav');
+            const hamburger = document.querySelector('.hamburger');
+            
+            if (!nav.contains(event.target) && !hamburger.contains(event.target)) {
+                nav.classList.remove('active');
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ivjiro's Portfolio - Skills</title>
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #f7f4ed;
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+        }
+
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            background-color: #0b1957;
+            width: 100%;
+            height: 70px;
+            padding: 0 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            animation: slideDown 0.8s ease forwards;
+        }
+
+        @keyframes slideDown {
+            from {
+                transform: translateY(-100px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        .logo img {
+            height: 60px;
+            width: auto;
+            border-radius: 10px;
+        }
+
+        nav ul {
+            list-style-type: none;
+            display: flex;
+            gap: 30px;
+            margin: 0;
+            padding: 0;
+        }
+
+        nav li a {
+            color: #E6E6FA;
+            text-decoration: none;
+            font-size: 16px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            padding-bottom: 5px;
+            border-bottom: 2px solid transparent;
+        }
+
+        nav li a:hover,
+        nav li.active a {
+            border-bottom: 2px solid #E6E6FA;
+        }
+
+        /* Hamburger menu for mobile */
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            gap: 5px;
+        }
+
+        .hamburger span {
+            width: 25px;
+            height: 3px;
+            background-color: #E6E6FA;
+            transition: 0.3s;
+        }
+
+        main {
+            padding-top: 100px;
+            min-height: calc(100vh - 70px);
+        }
+
+        .intro {
+            text-align: center;
+            padding: 40px 20px;
+            animation: fadeIn 1s ease 0.3s both;
+        }
+
+        .intro h1 {
+            color: #46286d;
+            font-size: clamp(28px, 5vw, 45px);
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .languages {
+            max-width: 1200px;
+            margin: 60px auto;
+            padding: 0 20px;
+            animation: fadeIn 1s ease 0.5s both;
+        }
+
+        .languages h2 {
+            text-align: center;
+            color: #46286d;
+            font-size: clamp(24px, 4vw, 32px);
+            margin-bottom: 50px;
+            font-weight: 600;
+        }
+
+        .imgs {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 40px;
+            padding: 20px;
+        }
+
+        .imgs img {
+            width: 100px;
+            height: 100px;
+            object-fit: contain;
+            transition: transform 0.3s ease, filter 0.3s ease;
+            filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.1));
+            animation: popIn 0.5s ease backwards;
+        }
+
+        .imgs img:nth-child(1) { animation-delay: 0.6s; }
+        .imgs img:nth-child(2) { animation-delay: 0.7s; }
+        .imgs img:nth-child(3) { animation-delay: 0.8s; }
+        .imgs img:nth-child(4) { animation-delay: 0.9s; }
+        .imgs img:nth-child(5) { animation-delay: 1s; }
+
+        @keyframes popIn {
+            from {
+                transform: scale(0);
+                opacity: 0;
+            }
+            to {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+
+        .imgs img:hover {
+            transform: translateY(-10px) scale(1.1);
+            filter: drop-shadow(0 8px 16px rgba(70, 40, 109, 0.3));
+        }
+
+        .certs {
+            max-width: 1200px;
+            margin: 80px auto;
+            padding: 0 20px;
+            animation: fadeIn 1s ease 1.2s both;
+        }
+
+        .certs h2 {
+            text-align: center;
+            color: #46286d;
+            font-size: clamp(24px, 4vw, 32px);
+            margin-bottom: 50px;
+            font-weight: 600;
+        }
+
+        .certs-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 30px;
+            padding: 20px;
+        }
+
+        .certs-container > div {
+            animation: fadeIn 0.6s ease backwards;
+        }
+
+        .certs-container > div:nth-child(1) { animation-delay: 1.3s; }
+        .certs-container > div:nth-child(2) { animation-delay: 1.4s; }
+        .certs-container > div:nth-child(3) { animation-delay: 1.5s; }
+        .certs-container > div:nth-child(4) { animation-delay: 1.6s; }
+
+        .details {
+            background: linear-gradient(135deg, #0b1957 0%, #1a2a6e 100%);
+            margin-top: 80px;
+            padding: 60px 20px 20px;
+        }
+
+        .contacts {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .me h2 {
+            color: #E6E6FA;
+            font-size: clamp(20px, 3vw, 28px);
+            font-weight: 600;
+        }
+
+        .contact {
+            text-align: center;
+        }
+
+        .contact h2 {
+            color: #E6E6FA;
+            font-size: clamp(22px, 3vw, 28px);
+            margin-bottom: 20px;
+            font-weight: 600;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+        }
+
+        .social-links a {
+            color: #E6E6FA;
+            font-size: 32px;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .social-links a:hover {
+            color: #fff;
+            transform: translateY(-5px) scale(1.15);
+        }
+
+        footer {
+            color: #E6E6FA;
+            text-align: center;
+            padding: 20px;
+            font-size: 14px;
+            opacity: 0.8;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .hamburger {
+                display: flex;
+            }
+
+            nav {
+                position: absolute;
+                top: 70px;
+                left: 0;
+                width: 100%;
+                background-color: #0b1957;
+                max-height: 0;
+                overflow: hidden;
+                transition: max-height 0.3s ease;
+            }
+
+            nav.active {
+                max-height: 300px;
+            }
+
+            nav ul {
+                flex-direction: column;
+                padding: 20px;
+                gap: 20px;
+            }
+
+            .imgs img {
+                width: 80px;
+                height: 80px;
+            }
+
+            .contacts {
+                flex-direction: column;
+                text-align: center;
+                gap: 30px;
+            }
+
+            .me {
+                order: 2;
+            }
+
+            .contact {
+                order: 1;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .imgs {
+                gap: 25px;
+            }
+
+            .imgs img {
+                width: 60px;
+                height: 60px;
+            }
+
+            .social-links a {
+                font-size: 28px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <img src="logo.png" alt="Logo">
+        </div>
+        <div class="hamburger" onclick="toggleMenu()">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+        <nav id="nav">
+            <ul>
+                <li><a href="index1.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li class="active"><a href="skill.html">Skills</a></li>
+                <li><a href="project.html">Projects</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <div class="intro">
+            <h1>What can I do?</h1>
+        </div>
+
+        <div class="languages">
+            <h2>Programming Languages & Frameworks</h2>
+            <div class="imgs">
+                <img src="html.svg" alt="HTML" title="HTML5">
+                <img src="css.svg" alt="CSS" title="CSS3">
+                <img src="javascript.svg" alt="JavaScript" title="JavaScript">
+                <img src="python.svg" alt="Python" title="Python">
+                <img src="react.svg" alt="React" title="React">
+            </div>
+        </div>
+
+        <div class="certs">
+            <h2>Certifications & Badges</h2>
+            <div class="certs-container">
+                <div data-iframe-width="150" data-iframe-height="270" data-share-badge-id="8e7cdbcf-63e3-42f6-a657-eeafc1dfd1bd" data-share-badge-host="https://www.credly.com"></div>
+                <div data-iframe-width="150" data-iframe-height="270" data-share-badge-id="8e2c4a3e-a0ca-42e6-bbe5-4be017a06ce2" data-share-badge-host="https://www.credly.com"></div>
+                <div data-iframe-width="150" data-iframe-height="270" data-share-badge-id="5e7aa06b-907f-4f08-8a41-7734824b53a5" data-share-badge-host="https://www.credly.com"></div>
+                <div data-iframe-width="150" data-iframe-height="270" data-share-badge-id="252937df-911c-404e-86fa-9e119580d84f" data-share-badge-host="https://www.credly.com"></div>
+            </div>
+        </div>
+    </main>
+
+    <div class="details">
+        <div class="contacts">
+            <div class="me">
+                <h2>Sofhia Nicole Ardiente</h2>
+            </div>
+            <div class="contact">
+                <h2>Contact Me</h2>
+                <div class="social-links">
+                    <a href="#" aria-label="Email"><i class="ph ph-envelope"></i></a>
+                    <a href="#" aria-label="LinkedIn"><i class="ph ph-linkedin-logo"></i></a>
+                    <a href="#" aria-label="Instagram"><i class="ph ph-instagram-logo"></i></a>
+                    <a href="#" aria-label="GitHub"><i class="ph ph-github-logo"></i></a>
+                </div>
+            </div>
+        </div>
+        <footer>
+            <p>&copy; 2025 Sofhia Nicole Ardiente. All rights reserved.</p>
+        </footer>
+    </div>
+
+    <script src="//cdn.credly.com/assets/utilities/embed.js"></script>
+    <script>
+        function toggleMenu() {
+            const nav = document.getElementById('nav');
+            nav.classList.toggle('active');
+        }
+
+        // Close menu when clicking outside
+        document.addEventListener('click', function(event) {
+            const nav = document.getElementById('nav');
+            const hamburger = document.querySelector('.hamburger');
+            
+            if (!nav.contains(event.target) && !hamburger.contains(event.target)) {
+                nav.classList.remove('active');
+            }
+        });
+    </script>
+</body>
+</html>
